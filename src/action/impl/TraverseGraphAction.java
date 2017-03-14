@@ -2,9 +2,9 @@ package action.impl;
 
 import action.WildcardArgsAction;
 import action.result.ActionResult;
-import data.PipeSystem;
-import data.PipelineJointVisitor;
-import io.PipelineContext;
+import struct.PipeSystem;
+import struct.PipelineJointVisitor;
+import data.PipelineContext;
 
 public class TraverseGraphAction extends WildcardArgsAction {
     private static final PipelineJointVisitor DISPLAY_VISITOR = new PipelineJointVisitor();

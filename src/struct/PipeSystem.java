@@ -1,4 +1,4 @@
-package data;
+package struct;
 
 import action.impl.LoadGraphAction;
 

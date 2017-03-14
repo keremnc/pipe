@@ -1,7 +1,7 @@
 package action;
 
 import action.result.ActionResult;
-import io.PipelineContext;
+import data.PipelineContext;
 
 public interface UserAction {
     ActionResult act(PipelineContext<String> context);

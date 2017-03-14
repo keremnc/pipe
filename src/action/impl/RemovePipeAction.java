@@ -2,8 +2,8 @@ package action.impl;
 
 import action.WildcardArgsAction;
 import action.result.ActionResult;
-import data.PipeSystem;
-import io.PipelineContext;
+import struct.PipeSystem;
+import data.PipelineContext;
 
 public class RemovePipeAction extends WildcardArgsAction {
 

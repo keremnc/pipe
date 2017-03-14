@@ -1,6 +1,6 @@
-package io;
+package data;
 
-import data.PipeSystem;
+import struct.PipeSystem;
 
 public class PipelineContext<T> {
     private PipeSystem<T> system;

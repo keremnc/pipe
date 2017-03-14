@@ -1,4 +1,4 @@
-package data;
+package struct;
 
 public class PipelineJointVisitor implements Visitor<String> {
     @Override

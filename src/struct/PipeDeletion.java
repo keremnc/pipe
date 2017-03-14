@@ -1,4 +1,4 @@
-package data;
+package struct;
 
 public class PipeDeletion<E> {
     private E source;

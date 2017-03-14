@@ -1,4 +1,4 @@
-package data;
+package struct;
 
 import java.io.IOException;
 import java.nio.file.Files;

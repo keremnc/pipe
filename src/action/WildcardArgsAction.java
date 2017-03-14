@@ -1,7 +1,7 @@
 package action;
 
 import action.result.ActionResult;
-import io.PipelineContext;
+import data.PipelineContext;
 
 public abstract class WildcardArgsAction implements UserAction {
     private static final ActionResult MISSING_PARAM_RESULT = new ActionResult(false, "Please provide argument");
