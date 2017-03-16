@@ -1,12 +1,12 @@
 package struct;
 
-public class PipeDeletion<E> {
+public class FlowEdgeDeletion<E> {
     private E source;
     private E destination;
     private double cost;
     private long millis;
 
-    public PipeDeletion(E source, E destination, double cost, long millis) {
+    public FlowEdgeDeletion(E source, E destination, double cost, long millis) {
         this.source = source;
         this.destination = destination;
         this.cost = cost;

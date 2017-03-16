@@ -2,7 +2,7 @@ package action.impl;
 
 import action.NoArgsAction;
 import action.result.ActionResult;
-import struct.PipeSystem;
+import struct.FlowGraph;
 import data.PipelineContext;
 
 public class AdjacencyListAction extends NoArgsAction {
@@ -14,7 +14,7 @@ public class AdjacencyListAction extends NoArgsAction {
 
     @Override
     public ActionResult act(PipelineContext<String> context) {
-        PipeSystem<String> graph = context.getSystem();
+        FlowGraph<String> graph = context.getSystem();
         graph.showAdjTable();
         return new ActionResult(true, null);
     }

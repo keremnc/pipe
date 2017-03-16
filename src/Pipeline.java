@@ -18,7 +18,9 @@ public class Pipeline {
         USER_ACTIONS.put(4, new UndoRemoveAction());
         USER_ACTIONS.put(5, new AdjacencyListAction());
         USER_ACTIONS.put(6, new TraverseGraphAction());
-        USER_ACTIONS.put(7, new SaveGraphAction());
+        USER_ACTIONS.put(7, new SolveGraphAction());
+        USER_ACTIONS.put(8, new WriteSolutionAction());
+        USER_ACTIONS.put(9, new SaveGraphAction());
     }
 
     public static void main(String[] args) {
@@ -75,6 +77,7 @@ public class Pipeline {
                         }
 
                         context.setInputParams(params);
+                        System.out.println();
                     }
                 }
                 while (!((result = userAction.act(context)).isSuccess()) && userAction instanceof WildcardArgsAction);

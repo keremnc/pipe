@@ -2,10 +2,10 @@ package action.impl;
 
 import action.WildcardArgsAction;
 import action.result.ActionResult;
-import struct.FlowGraph;
 import data.PipelineContext;
+import struct.FlowGraph;
 
-public class SaveGraphAction extends WildcardArgsAction {
+public class WriteSolutionAction extends WildcardArgsAction {
 
     @Override
     public ActionResult process(PipelineContext<String> context) {
@@ -13,11 +13,15 @@ public class SaveGraphAction extends WildcardArgsAction {
 
         FlowGraph<String> graph = context.getSystem();
 
-        if (graph.saveGraph(fileName)) {
-            return new ActionResult(true, "Saved graph to '" + fileName + "'");
+        if (!graph.isSolved()) {
+            return new ActionResult(false, "You must solve the graph before writing!");
         }
 
-        return new ActionResult(false, "Unable to save graph to file...");
+        if (graph.saveSolution(fileName)) {
+            return new ActionResult(true, "Saved flow network to '" + fileName + "'");
+        }
+
+        return new ActionResult(false, "Unable to save flow network to file...");
 
     }
 
@@ -28,12 +32,12 @@ public class SaveGraphAction extends WildcardArgsAction {
 
     @Override
     public String getName() {
-        return "Save graph";
+        return "Save solution";
     }
 
     @Override
     public String getDescription() {
-        return "Save graph to file";
+        return "Save solved flow network to disk";
     }
 
     @Override

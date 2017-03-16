@@ -2,14 +2,14 @@ package action.impl;
 
 import action.WildcardArgsAction;
 import action.result.ActionResult;
-import struct.PipeSystem;
+import struct.FlowGraph;
 import data.PipelineContext;
 
 public class RemovePipeAction extends WildcardArgsAction {
 
     @Override
     public ActionResult process(PipelineContext<String> context) {
-        PipeSystem<String> graph = context.getSystem();
+        FlowGraph<String> graph = context.getSystem();
 
         String srcStr = context.getInputParams()[0].toUpperCase();
         String dstStr = context.getInputParams()[1].toUpperCase();

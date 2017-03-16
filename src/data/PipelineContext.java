@@ -1,19 +1,19 @@
 package data;
 
-import struct.PipeSystem;
+import struct.FlowGraph;
 
 public class PipelineContext<T> {
-    private PipeSystem<T> system;
+    private FlowGraph<T> system;
     private String[] inputParams;
 
-    public PipelineContext(PipeSystem<T> system, String[] inputParams) {
+    public PipelineContext(FlowGraph<T> system, String[] inputParams) {
         this.system = system;
         this.inputParams = inputParams;
     }
 
     /** Accessors & Mutators **/
 
-    public PipeSystem<T> getSystem() {
+    public FlowGraph<T> getSystem() {
         return system;
     }
 
@@ -21,7 +21,7 @@ public class PipelineContext<T> {
         return inputParams;
     }
 
-    public void setSystem(PipeSystem<T> system) {
+    public void setSystem(FlowGraph<T> system) {
         this.system = system;
     }
 

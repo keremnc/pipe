@@ -2,7 +2,7 @@ package action.impl;
 
 import action.FileIOGraphAction;
 import action.result.ActionResult;
-import struct.PipeSystem;
+import struct.FlowGraph;
 import data.PipelineContext;
 
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class LoadGraphAction extends FileIOGraphAction {
     @Override
     public ActionResult handleFile(PipelineContext<String> context, Scanner fileScanner) {
 
-        PipeSystem<String> graph = new PipeSystem<>();
+        FlowGraph<String> graph = new FlowGraph<>();
 
         try {
             while (fileScanner.hasNext()) {

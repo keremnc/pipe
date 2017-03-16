@@ -2,7 +2,7 @@ package action.impl;
 
 import action.WildcardArgsAction;
 import action.result.ActionResult;
-import struct.PipeSystem;
+import struct.FlowGraph;
 import struct.PipelineJointVisitor;
 import data.PipelineContext;
 
@@ -11,7 +11,7 @@ public class TraverseGraphAction extends WildcardArgsAction {
 
     @Override
     public ActionResult process(PipelineContext<String> context) {
-        PipeSystem<String> graph = context.getSystem();
+        FlowGraph<String> graph = context.getSystem();
         String vertex = context.getInputParams()[1].toUpperCase();
 
         if (!graph.contains(vertex)) {
