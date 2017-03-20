@@ -65,6 +65,7 @@ public final class FordFulkerson {
             }
         }
 
+        // Update solution data
         pipe.setSolvedVertices(new Pair<>(source, sink));
         pipe.setMaxFlow(maxFlow);
         pipe.setSolved(true);
@@ -95,6 +96,7 @@ public final class FordFulkerson {
 
             LinkedStack<ResidualEdge<T>> result = dfsFindPath(residualEdge.getEnd(), dst,
                     graph, visited);
+
             if (result != null) {
                 result.push(residualEdge);
                 return result;
@@ -103,6 +105,12 @@ public final class FordFulkerson {
         return null;
     }
 
+    /**
+     * Finds the bottleneck path and sets each of the edges in the path to that value
+     * @param path stack of edges in the path
+     * @param <T> Generic type of graph
+     * @return bottleneck value
+     */
     private static <T> double bottleneckPath(LinkedStack<ResidualEdge<T>> path) {
         double bottleneck = Double.MAX_VALUE;
 

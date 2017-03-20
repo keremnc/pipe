@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 /**
  * Extension of {@link Graph} containing specific additional implementations relating to
  * timestamped deletions & max-flow solution processing
+ *
  * @param <E> Generic type of {@link Graph}
  */
 public class FlowGraph<E> extends Graph<E> {
@@ -71,6 +72,10 @@ public class FlowGraph<E> extends Graph<E> {
         return flowMap;
     }
 
+    /**
+     * Prints flow network solution to a Writer
+     * @param writer writer to write to
+     */
     public void printWithFlows(Writer writer) {
         try {
             for (E node : vertexSet.keySet()) {
@@ -97,14 +102,29 @@ public class FlowGraph<E> extends Graph<E> {
         return super.remove(start, end) && registerDeletion(start, end, cost, System.currentTimeMillis());
     }
 
+    /**
+     * Registeres a deletion
+     *
+     * @return
+     */
     public boolean registerDeletion(E src, E dst, double cost, long millis) {
         return recentDeletions.push(new FlowEdgeDeletion<E>(src, dst, cost, millis));
     }
 
+    /**
+     * Returns whether or not a deletion has occured
+     *
+     * @return
+     */
     public boolean hasRecentRemoval() {
         return !recentDeletions.isEmpty();
     }
 
+    /**
+     * Pops the most recent removal from the deletions stack and undoes it
+     *
+     * @return if the most recent deletion could be undone
+     */
     public boolean undoRecentRemoval() {
         if (hasRecentRemoval()) {
             FlowEdgeDeletion<E> deletion = recentDeletions.pop();
@@ -122,6 +142,12 @@ public class FlowGraph<E> extends Graph<E> {
         return false;
     }
 
+    /**
+     * Writes solution adjacency list to a file
+     *
+     * @param fileName filepath
+     * @return success
+     */
     public boolean saveSolution(String fileName) {
         StringWriter writer = new StringWriter();
         printWithFlows(writer);

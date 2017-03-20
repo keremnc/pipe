@@ -44,6 +44,14 @@ public final class ResidualEdge<E> {
         this.reverse = reverse;
     }
 
+    /**
+     * Pushes flow through the edge, and its reverse
+     *
+     * If the amount to be pushed is negative, it will add to its reverse
+     *
+     *
+     * @param amount flow to add
+     */
     public void addFlow(double amount) {
         if (amount < 0) {
             reverse.addFlow(-amount);
