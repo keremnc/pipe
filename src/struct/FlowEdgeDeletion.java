@@ -1,5 +1,9 @@
 package struct;
 
+/**
+ * Timestamped data structure representing a deleted edge from a graph
+ * @param <E> Generic type of {@link Graph}
+ */
 public class FlowEdgeDeletion<E> {
     private E source;
     private E destination;

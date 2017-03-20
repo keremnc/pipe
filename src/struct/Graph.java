@@ -85,6 +85,11 @@ public class  Graph<E> {
         System.out.println();
     }
 
+    /**
+     * Returns true if a vertex exists in the vertexSet
+     * @param vertex object to scan for
+     * @return existence of edge
+     */
     public boolean contains(E vertex) {
         return vertexSet.containsKey(vertex);
     }

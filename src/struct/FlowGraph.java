@@ -1,6 +1,7 @@
 package struct;
 
 import action.impl.LoadGraphAction;
+import ford.FordFulkersonError;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -13,12 +14,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Extension of {@link Graph} containing specific additional implementations relating to
+ * timestamped deletions & max-flow solution processing
+ * @param <E> Generic type of {@link Graph}
+ */
 public class FlowGraph<E> extends Graph<E> {
 
     private LinkedStack<FlowEdgeDeletion<E>> recentDeletions = new LinkedStack<>();
     private Map<E, Map<E, Double>> flowMap = new HashMap<>();
     private double maxFlow;
     private boolean solved = false;
+    private Pair<E, E> solvedVertices;
+
+    private FordFulkersonError solutionError;
 
     @Override
     public void addEdge(E source, E dest, double cost) {
@@ -34,12 +43,28 @@ public class FlowGraph<E> extends Graph<E> {
         this.solved = solved;
     }
 
+    public Pair<E, E> getSolvedVertices() {
+        return solvedVertices;
+    }
+
+    public void setSolvedVertices(Pair<E, E> solvedVertices) {
+        this.solvedVertices = solvedVertices;
+    }
+
     public double getMaxFlow() {
         return maxFlow;
     }
 
     public void setMaxFlow(double maxFlow) {
         this.maxFlow = maxFlow;
+    }
+
+    public FordFulkersonError getSolutionError() {
+        return solutionError;
+    }
+
+    public void setSolutionError(FordFulkersonError solutionError) {
+        this.solutionError = solutionError;
     }
 
     public Map<E, Map<E, Double>> getFlowMap() {

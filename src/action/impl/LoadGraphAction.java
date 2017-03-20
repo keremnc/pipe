@@ -1,17 +1,30 @@
 package action.impl;
 
-import action.FileIOGraphAction;
-import action.result.ActionResult;
-import struct.FlowGraph;
+import action.UserAction;
+import action.ActionResult;
 import data.PipelineContext;
+import struct.FlowGraph;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class LoadGraphAction extends FileIOGraphAction {
+/**
+ * Action to load {@link FlowGraph} from a file
+ */
+public class LoadGraphAction implements UserAction {
     public static final String MAGIC_DELETION_DELIMITER = ",";
 
     @Override
-    public ActionResult handleFile(PipelineContext<String> context, Scanner fileScanner) {
+    public ActionResult act(PipelineContext<String> context) {
+
+        File file = new File(context.getInputParams()[0]);
+        Scanner fileScanner;
+        try {
+            fileScanner = new Scanner(file);
+        } catch (FileNotFoundException fe) {
+            return new ActionResult(false, "Cannot open input file '" + file.getAbsolutePath() + "'");
+        }
 
         FlowGraph<String> graph = new FlowGraph<>();
 
@@ -38,9 +51,13 @@ public class LoadGraphAction extends FileIOGraphAction {
                             graph.registerDeletion(src, dst, cost, millis);
                         }
 
-                        continue;
                     }
+                    continue;
                 }
+                // Read regular vertices from an adjacency list
+                // Format: <VERTEX>|<ADJACENT VERTEX|<WEIGHT>|<ADAJCENT VERTEX 2>|<WEIGHT 2>|...
+
+
                 String[] parts = line.split("\\|", 2);
 
                 String vertex = parts[0].trim();
@@ -68,6 +85,11 @@ public class LoadGraphAction extends FileIOGraphAction {
 
         return new ActionResult(true, "Successfully loaded graph!");
 
+    }
+
+    @Override
+    public String[] getParameterNames() {
+        return new String[]{"filename"};
     }
 
     @Override

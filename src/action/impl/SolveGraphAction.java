@@ -1,14 +1,18 @@
 package action.impl;
 
-import action.WildcardArgsAction;
-import action.result.ActionResult;
+import action.UserAction;
+import action.ActionResult;
 import data.PipelineContext;
 import ford.FordFulkerson;
 import struct.FlowGraph;
+import struct.Pair;
 
 import java.io.PrintWriter;
 
-public class SolveGraphAction extends WildcardArgsAction {
+/**
+ * Action to solve & display max-flow for {@link FlowGraph}
+ */
+public class SolveGraphAction implements UserAction {
     @Override
     public boolean requiresGraphLoaded() {
         return true;
@@ -25,23 +29,20 @@ public class SolveGraphAction extends WildcardArgsAction {
     }
 
     @Override
-    public ActionResult process(PipelineContext<String> context) {
+    public ActionResult act(PipelineContext<String> context) {
         FlowGraph<String> graph = context.getSystem();
 
-        String srcStr = context.getInputParams()[0].toUpperCase();
-        String dstStr = context.getInputParams()[1].toUpperCase();
+        String srcStr = context.getInputParams()[0];
+        String dstStr = context.getInputParams()[1];
 
-        if (!graph.contains(srcStr) || !graph.contains(dstStr)) {
-            return new ActionResult(false, "Source or destination does not exist!");
-        }
-
-        if (graph.isSolved()) {
+        Pair<String, String> solvedVertices = graph.getSolvedVertices();
+        if (graph.isSolved() && solvedVertices != null && solvedVertices.first.equals(srcStr) && solvedVertices.second.equals(dstStr)) {
             System.out.println("Existing graph is already solved... Displaying cached value.");
         } else {
             FordFulkerson.findMaxFlow(graph, srcStr, dstStr);
 
             if (!graph.isSolved()) {
-                return new ActionResult(false, "Unable to solve graph!");
+                return new ActionResult(false, "Unable to solve graph - " + graph.getSolutionError().getMessage() + "");
             }
         }
 

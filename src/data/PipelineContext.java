@@ -2,6 +2,10 @@ package data;
 
 import struct.FlowGraph;
 
+/**
+ * Data structure containing information regarding user input & flow graph
+ * @param <T> Generic type of {@link struct.Graph}
+ */
 public class PipelineContext<T> {
     private FlowGraph<T> system;
     private String[] inputParams;

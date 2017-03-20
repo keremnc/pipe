@@ -1,18 +1,21 @@
 package action.impl;
 
-import action.WildcardArgsAction;
-import action.result.ActionResult;
-import struct.FlowGraph;
-import struct.PipelineJointVisitor;
+import action.UserAction;
+import action.ActionResult;
 import data.PipelineContext;
+import struct.FlowGraph;
+import struct.StringVisitor;
 
-public class TraverseGraphAction extends WildcardArgsAction {
-    private static final PipelineJointVisitor DISPLAY_VISITOR = new PipelineJointVisitor();
+/**
+ * Action to print graph, traversed w/ either DFS or BFS
+ */
+public class TraverseGraphAction implements UserAction {
+    private static final StringVisitor DISPLAY_VISITOR = new StringVisitor("Flow joint");
 
     @Override
-    public ActionResult process(PipelineContext<String> context) {
+    public ActionResult act(PipelineContext<String> context) {
         FlowGraph<String> graph = context.getSystem();
-        String vertex = context.getInputParams()[1].toUpperCase();
+        String vertex = context.getInputParams()[1];
 
         if (!graph.contains(vertex)) {
             return new ActionResult(false, "Pipe joint '" + vertex + "' does not exist...");

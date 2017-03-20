@@ -1,14 +1,17 @@
 package action.impl;
 
-import action.WildcardArgsAction;
-import action.result.ActionResult;
+import action.UserAction;
+import action.ActionResult;
 import struct.FlowGraph;
 import data.PipelineContext;
 
-public class SaveGraphAction extends WildcardArgsAction {
+/**
+ * Action to save {@link FlowGraph} to a file
+ */
+public class SaveGraphAction implements UserAction {
 
     @Override
-    public ActionResult process(PipelineContext<String> context) {
+    public ActionResult act(PipelineContext<String> context) {
         String fileName = context.getInputParams()[0];
 
         FlowGraph<String> graph = context.getSystem();

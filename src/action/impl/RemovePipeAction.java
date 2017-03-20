@@ -1,14 +1,17 @@
 package action.impl;
 
-import action.WildcardArgsAction;
-import action.result.ActionResult;
-import struct.FlowGraph;
+import action.UserAction;
+import action.ActionResult;
 import data.PipelineContext;
+import struct.FlowGraph;
 
-public class RemovePipeAction extends WildcardArgsAction {
+/**
+ * Action to remove edge from {@link struct.Graph}
+ */
+public class RemovePipeAction implements UserAction {
 
     @Override
-    public ActionResult process(PipelineContext<String> context) {
+    public ActionResult act(PipelineContext<String> context) {
         FlowGraph<String> graph = context.getSystem();
 
         String srcStr = context.getInputParams()[0].toUpperCase();

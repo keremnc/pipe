@@ -1,11 +1,14 @@
 package action.impl;
 
-import action.NoArgsAction;
-import action.result.ActionResult;
-import struct.FlowGraph;
+import action.UserAction;
+import action.ActionResult;
 import data.PipelineContext;
+import struct.FlowGraph;
 
-public class UndoRemoveAction extends NoArgsAction {
+/**
+ * Action to undo the most recent edge deletion
+ */
+public class UndoRemoveAction implements UserAction {
 
     @Override
     public String getName() {

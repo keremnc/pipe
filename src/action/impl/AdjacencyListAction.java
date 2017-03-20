@@ -1,11 +1,14 @@
 package action.impl;
 
-import action.NoArgsAction;
-import action.result.ActionResult;
-import struct.FlowGraph;
+import action.UserAction;
+import action.ActionResult;
 import data.PipelineContext;
+import struct.FlowGraph;
 
-public class AdjacencyListAction extends NoArgsAction {
+/**
+ * Action to print the adjacency list of the {@link FlowGraph}
+ */
+public class AdjacencyListAction implements UserAction {
 
     @Override
     public String getName() {

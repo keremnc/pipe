@@ -1,19 +1,23 @@
 package action.impl;
 
-import action.WildcardArgsAction;
-import action.result.ActionResult;
-import struct.FlowGraph;
+import action.UserAction;
+import action.ActionResult;
 import data.PipelineContext;
+import struct.FlowGraph;
 
-public class AddPipeAction extends WildcardArgsAction {
+/**
+ * Action to add an edge to the {@link FlowGraph}
+ */
+public class AddPipeAction implements UserAction {
 
     @Override
-    public ActionResult process(PipelineContext<String> context) {
+    public ActionResult act(PipelineContext<String> context) {
         FlowGraph<String> graph = context.getSystem();
 
-        String srcStr = context.getInputParams()[0].toUpperCase();
-        String dstStr = context.getInputParams()[1].toUpperCase();
+        String srcStr = context.getInputParams()[0];
+        String dstStr = context.getInputParams()[1];
 
+        // These are characters we use for serializing the graph data
         if (srcStr.contains("\\|") || dstStr.contains("\\|") || srcStr.contains(",") || dstStr.contains(",")) {
             return new ActionResult(false, "Illegal character! Cannot use '|' or ',' symbol");
         }
@@ -27,7 +31,7 @@ public class AddPipeAction extends WildcardArgsAction {
         } catch (NumberFormatException ex) {
             return new ActionResult(false, "Unable to parse '" + capStr + "' to Double");
         }
-        context.getSystem().addEdge(srcStr, dstStr, capacity);
+        graph.addEdge(srcStr, dstStr, capacity);
 
         return new ActionResult(true, String.format("Pipe {%s->%s (%s)} added!", srcStr, dstStr, capStr));
 

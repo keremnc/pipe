@@ -1,5 +1,8 @@
-package action.result;
+package action;
 
+/**
+ * Data object representing the state of a {@link UserAction}
+ */
 public class ActionResult {
 
     private boolean success;
