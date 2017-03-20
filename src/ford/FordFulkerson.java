@@ -46,7 +46,7 @@ public final class FordFulkerson {
             return;
         }
 
-        for (T node: gResidual) {
+        for (T node : gResidual) {
             for (ResidualEdge<T> residualEdge : gResidual.edgesFrom(node)) {
                 if (residualEdge.isResidual()) {
                     pipe.getFlowMap().computeIfAbsent(residualEdge.getEnd(), p -> new HashMap<>()).put(residualEdge.getStart(), residualEdge.getCapacity() + 0D);
