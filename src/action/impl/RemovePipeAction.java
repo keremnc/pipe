@@ -14,8 +14,8 @@ public class RemovePipeAction implements UserAction {
     public ActionResult act(PipelineContext<String> context) {
         FlowGraph<String> graph = context.getSystem();
 
-        String srcStr = context.getInputParams()[0].toUpperCase();
-        String dstStr = context.getInputParams()[1].toUpperCase();
+        String srcStr = context.getInputParams()[0];
+        String dstStr = context.getInputParams()[1];
         if (context.getSystem().remove(srcStr, dstStr)) {
             return new ActionResult(true, String.format("Pipe {%s->%s} removed!", srcStr, dstStr));
         }

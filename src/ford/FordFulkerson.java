@@ -8,8 +8,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Utility class that applies Ford-Fulkerson algorithm
+ */
 public final class FordFulkerson {
 
+    /**
+     * Synchronously runs the max-flow algorithm on a graph; transforms graphs
+     * @param pipe input flow network
+     * @param source start vertex
+     * @param sink destination vertex
+     * @param <T> Generic type of Graph
+     */
     public static <T> void findMaxFlow(FlowGraph<T> pipe, T source, T sink) {
         double maxFlow = 0;
 
@@ -36,6 +46,7 @@ public final class FordFulkerson {
         LinkedStack<ResidualEdge<T>> path;
         boolean pathFound = false;
 
+        // For every path from start to dest where flow can be pushed through
         while ((path = dfsFindPath(source, sink, gResidual, new HashSet<T>())) != null) {
             maxFlow += augmentPath(path);
             pathFound = true;
@@ -46,6 +57,7 @@ public final class FordFulkerson {
             return;
         }
 
+        // Transform input graph with calculated residual flow values from residual graphs
         for (T node : gResidual) {
             for (ResidualEdge<T> residualEdge : gResidual.edgesFrom(node)) {
                 if (residualEdge.isResidual()) {
@@ -57,8 +69,18 @@ public final class FordFulkerson {
         pipe.setSolvedVertices(new Pair<>(source, sink));
         pipe.setMaxFlow(maxFlow);
         pipe.setSolved(true);
+        pipe.setSolutionError(null);
     }
 
+    /**
+     * Recursive DFS algo to find augmenting paths where flow can be passed through
+     * @param src source vertex
+     * @param dst destination vertex
+     * @param graph residual flow network
+     * @param visited set of visited vertices
+     * @param <T> Generic type of Graph
+     * @return
+     */
     private static <T> LinkedStack<ResidualEdge<T>> dfsFindPath(T src, T dst,
                                                                 ResidualGraph<T> graph,
                                                                 Set<T> visited) {
@@ -68,8 +90,9 @@ public final class FordFulkerson {
         if (src.equals(dst)) {
             return new LinkedStack<>();
         }
+
         for (ResidualEdge<T> residualEdge : graph.edgesFrom(src)) {
-            if (residualEdge.getCapacity() == 0) continue;
+            if (residualEdge.getCapacity() == 0) continue; // Only process paths where flow can be pushed through
 
             LinkedStack<ResidualEdge<T>> result = dfsFindPath(residualEdge.getEnd(), dst,
                     graph, visited);
