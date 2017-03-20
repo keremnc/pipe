@@ -30,7 +30,6 @@ public final class FordFulkerson {
         // If an exception occurs during processing, this will be the solution state
         // Program is single-threaded, no need to worry about concurrency here
 
-
         if (source.equals(sink)) { // src & dst are identical
             pipe.setSolutionError(FordFulkersonError.SRC_AND_DEST_IDENTICAL);
             return;
@@ -48,7 +47,7 @@ public final class FordFulkerson {
 
         // For every path from start to dest where flow can be pushed through
         while ((path = dfsFindPath(source, sink, gResidual, new HashSet<T>())) != null) {
-            maxFlow += augmentPath(path);
+            maxFlow += bottleneckPath(path);
             pathFound = true;
         }
 
@@ -104,15 +103,16 @@ public final class FordFulkerson {
         return null;
     }
 
-    private static <T> double augmentPath(LinkedStack<ResidualEdge<T>> path) {
-        double capacity = Double.MAX_VALUE;
+    private static <T> double bottleneckPath(LinkedStack<ResidualEdge<T>> path) {
+        double bottleneck = Double.MAX_VALUE;
+
         for (ResidualEdge<T> residualEdge : path)
-            capacity = Math.min(capacity, residualEdge.getCapacity());
+            bottleneck = Math.min(bottleneck, residualEdge.getCapacity());
 
         for (ResidualEdge<T> residualEdge : path) {
-            residualEdge.addFlow(capacity);
+            residualEdge.addFlow(bottleneck);
         }
 
-        return capacity;
+        return bottleneck;
     }
 }

@@ -1,0 +1,16 @@
+San Francisco->San Bruno (300.0/1000.0) 30.00% capacity
+San Francisco->Bayshore (150.0/1000.0) 15.00% capacity
+San Francisco->San Mateo (150.0/1000.0) 15.00% capacity
+San Francisco->Hilsdale (0.0/1000.0) 0.00% capacity
+Hillsdale->Belmont (0.0/210.0) 0.00% capacity
+Hillsdale->Mountain View (0.0/60.0) 0.00% capacity
+Palo Alto->Sunnyvale (170.0/1000.0) 17.00% capacity
+San Bruno->Palo Alto (100.0/100.0) 100.00% capacity
+San Bruno->Atherton (200.0/200.0) 100.00% capacity
+Belmont->Sunnyvale (50.0/1000.0) 5.00% capacity
+Bayshore->Belmont (50.0/50.0) 100.00% capacity
+Bayshore->Atherton (100.0/100.0) 100.00% capacity
+Atherton->Sunnyvale (300.0/1000.0) 30.00% capacity
+San Mateo->Palo Alto (70.0/70.0) 100.00% capacity
+San Mateo->Mountain View (80.0/80.0) 100.00% capacity
+Mountain View->Sunnyvale (80.0/1000.0) 8.00% capacity

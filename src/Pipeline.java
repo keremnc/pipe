@@ -161,9 +161,12 @@ public class Pipeline {
             int i = actions.getKey();
             UserAction action = actions.getValue();
             System.out.println("| " + String.format("%-" + NUM_WIDTH + "s %-" + DESC_WIDTH + "s %-" + PARAMS_WIDTH + "s", i + ".", action.getDescription(),
-                    action.getParameterNames() == null ? ":" : Arrays.asList(action.getParameterNames())) + "|");
+                    action.getParameterNames() == null ? "" : Arrays.asList(action.getParameterNames())) + "|");
         }
         System.out.println(separator);
+        System.out.println(String.format("| %" + DESC_WIDTH + "s%" + (HELP_TABLE_WIDTH - (DESC_WIDTH + 2)) + "s ", "Type 'q' to quit ", "|"));
+        System.out.println(separator);
+
     }
 
 }

@@ -1,0 +1,17 @@
+New York City->Jersey City (18.0/20.0) 90.00% capacity
+New York City->Newark (6.0/10.0) 60.00% capacity
+Jersey City->Paterson (17.0/21.0) 80.95% capacity
+Jersey City->Yonkers (1.0/1.0) 100.00% capacity
+Paterson->Edison (8.0/8.0) 100.00% capacity
+Paterson->New Rochelle (9.0/9.0) 100.00% capacity
+Mount Vernon->Wayne (15.0/15.0) 100.00% capacity
+Mount Vernon->Union (9.0/19.0) 47.37% capacity
+Yonkers->Paterson (0.0/10.0) 0.00% capacity
+Yonkers->Edison (7.0/7.0) 100.00% capacity
+Edison->Mount Vernon (15.0/21.0) 71.43% capacity
+Edison->New Rochelle (0.0/5.0) 0.00% capacity
+Newark->Jersey City (0.0/2.0) 0.00% capacity
+Newark->Yonkers (6.0/9.0) 66.67% capacity
+New Rochelle->Mount Vernon (9.0/21.0) 42.86% capacity
+New Rochelle->Union (0.0/19.0) 0.00% capacity
+Union->Wayne (9.0/15.0) 60.00% capacity

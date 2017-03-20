@@ -1,0 +1,50 @@
+description                                                 #       params
+-----------                                                 -       --------
+
+- Run command that does not exist                           11
+- Enter a command that requires graph                       5
+
+- Load graph                                                1       > test
+                                                                    > resources/invalid_data
+                                                                    > resources/TeamProInput1
+
+- Traverse DFS & BFS                                        6       > DFS > No City
+                                                                    > DFS > New York City
+                                                            6       > BFS > Newark
+
+- Print adjacency list                                      5
+
+- Add edges                                                 2       > New York City > Rochester > test
+                                                                    > New York City > Rochester > 100
+                                                            2       > Rochester > Albany > 150
+                                                            2       > New York City > Albany > 200
+                                                            2       > Albany > Wayne > 399
+
+- Print adjacency matrix                                    5
+
+- Delete edges                                              3       > San Francisco > Wyoming
+                                                                    > Albany > Wayne
+                                                            3       > New York City > Rochester
+                                                            3       > New York City > Albany
+
+- Re-add 2 back                                             4
+                                                            4
+
+- Save graph to new file                                    9       > resources/saved
+
+- Load new file                                             1       > resources/saved
+
+- Re-add 1 back                                             4
+
+- Print adjacency matrix                                    5
+
+- Delete all 4 new ones                                     3       > New York City > Rochester
+                                                            3       > Rochester > Albany
+                                                            3       > New York City > Albany
+                                                            3       > Albany > Wayne
+
+- Solve graph invalid vertices                              7       > San Francisco > Austin
+                                                                    > Wayne > New York City
+                                                                    > New York City > Wayne
+
+- Print to file                                             8       > resource/sol

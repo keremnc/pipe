@@ -1,0 +1,11 @@
+Sacramento|SanFrancisco|2000, LosAngeles|1000, Oakland|800
+SanFrancisco|LosAngeles|1000, SanJose|1500
+LosAngeles|Oakland|100, SanJose|3000
+Oakland|SanJose|1000
+SanJose|SantaBarbara|2000,SantaMonica|1000,PalmSprings|500,LongBeach|1000
+SantaBarbara|Irvine|400
+SantaMonica|SantaBarbara|100, Irvine|3000
+PalmSprings|SantaRosa|2000
+LongBeach|PalmSprings|80, SantaRosa|1000
+Irvine|SanDiego|5000
+SantaRosa|Irvine|1000, SanDiego|2000
